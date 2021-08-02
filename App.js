@@ -1,21 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { useFonts, OpenSans_400Regular } from "@expo-google-fonts/open-sans";
+import AppLoading from "expo-app-loading";
+import { NavigationContainer } from "@react-navigation/native";
+import { Drawer } from "./components/Drawer";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+  let [fontsLoaded] = useFonts({
+    "open-sans": OpenSans_400Regular,
+  });
+
+  return !fontsLoaded ? (
+    <AppLoading />
+  ) : (
+    <NavigationContainer>
+      <Drawer />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
